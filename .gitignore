@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### maven ###
+mvnw
+mvnw.cmd
+.mvn/
+
+### local files ###
+transactions.log
