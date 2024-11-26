@@ -14,11 +14,6 @@ public class DepositStrategy implements TransactionStrategy {
         fromAccount.deposit(amount);
         return true;
     }
-
-    @Override
-    public TransactionType getType() {
-        return TransactionType.DEPOSIT;
-    }
 }
 
 

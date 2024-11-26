@@ -8,7 +8,5 @@ import azki.vam.banking.enummeration.TransactionType;
  */
 public interface TransactionStrategy {
     boolean execute(BankAccount fromAccount, BankAccount toAccount, double amount);
-
-    TransactionType getType();
 }
 

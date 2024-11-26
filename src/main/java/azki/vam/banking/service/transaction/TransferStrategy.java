@@ -16,9 +16,4 @@ public class TransferStrategy implements TransactionStrategy {
         toAccount.deposit(amount);
         return true;
     }
-
-    @Override
-    public TransactionType getType() {
-        return TransactionType.TRANSFER;
-    }
 }

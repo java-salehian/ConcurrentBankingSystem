@@ -15,9 +15,4 @@ public class WithdrawalStrategy implements TransactionStrategy {
             return true;
         }
     }
-
-    @Override
-    public TransactionType getType() {
-        return TransactionType.WITHDRAW;
-    }
 }
