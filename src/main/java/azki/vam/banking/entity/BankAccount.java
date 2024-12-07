@@ -18,8 +18,8 @@ public class BankAccount {
     private String accountNumber;
     private String accountHolderName;
     private double balance;
-    @Version
-    private Long version;
+//    @Version
+//    private Long version;
 
     public BankAccount(String accountNumber, String accountHolderName, double balance) {
         this.accountNumber = accountNumber;

@@ -20,14 +20,14 @@ public class BankService {
     private final List<TransactionObserver> observers;
     private final TransactionContext transactionContext;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public BankAccount createAccount(String accountHolderName, double initialBalance) {
         BankAccount account = new BankAccount(generateAccountNumber(), accountHolderName, initialBalance);
         bankAccountRepository.save(account);
         return account;
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public boolean deposit(String accountNumber, double amount) {
         BankAccount account = bankAccountRepository.findByAccountNumberForUpdate(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + accountNumber));
@@ -38,7 +38,7 @@ public class BankService {
         return success;
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public boolean withdraw(String accountNumber, double amount) {
         BankAccount account = bankAccountRepository.findByAccountNumberForUpdate(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + accountNumber));
@@ -51,7 +51,7 @@ public class BankService {
         return success;
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public boolean transfer(String fromAccountNumber, String toAccountNumber, double amount) {
         BankAccount fromAccount = bankAccountRepository.findByAccountNumberForUpdate(fromAccountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + fromAccountNumber));
