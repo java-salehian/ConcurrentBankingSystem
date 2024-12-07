@@ -32,8 +32,7 @@ public class BankService {
         BankAccount account = bankAccountRepository.findByAccountNumberForUpdate(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + accountNumber));
 
-        transactionContext.setStrategy("depositStrategy");
-        boolean success = transactionContext.executeStrategy(account, null, amount);
+        boolean success = transactionContext.executeStrategy("depositStrategy", account, null, amount);
 
         notifyObservers(account.getAccountNumber(), "Deposit", amount);
         return success;
@@ -44,8 +43,7 @@ public class BankService {
         BankAccount account = bankAccountRepository.findByAccountNumberForUpdate(accountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + accountNumber));
 
-        transactionContext.setStrategy("withdrawalStrategy");
-        boolean success = transactionContext.executeStrategy(account, null, amount);
+        boolean success = transactionContext.executeStrategy("withdrawalStrategy", account, null, amount);
 
         if (success) {
             notifyObservers(account.getAccountNumber(), "Withdrawal", amount);
@@ -59,9 +57,9 @@ public class BankService {
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + fromAccountNumber));
         BankAccount toAccount = bankAccountRepository.findByAccountNumberForUpdate(toAccountNumber)
                 .orElseThrow(() -> new AccountNotFoundException("Account Number not found" + toAccountNumber));
-        transactionContext.setStrategy("transferStrategy");
 
-        boolean success = transactionContext.executeStrategy(fromAccount, toAccount, amount);
+
+        boolean success = transactionContext.executeStrategy("transferStrategy", fromAccount, toAccount, amount);
         if (success) {
             notifyObservers(fromAccount.getAccountNumber(), "Transfer-From", amount);
             notifyObservers(toAccount.getAccountNumber(), "Transfer-To", amount);
