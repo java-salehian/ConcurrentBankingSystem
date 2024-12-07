@@ -1,7 +1,6 @@
 package azki.vam.banking.service.transaction;
 
 import azki.vam.banking.entity.BankAccount;
-import azki.vam.banking.enummeration.TransactionType;
 
 /*
  *  Soha Salehian created on 11/21/2024

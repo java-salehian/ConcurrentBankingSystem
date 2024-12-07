@@ -1,7 +1,6 @@
 package azki.vam.banking.service.transaction;
 
 import azki.vam.banking.entity.BankAccount;
-import azki.vam.banking.enummeration.TransactionType;
 import azki.vam.banking.exception.InsufficientBalanceException;
 import org.springframework.stereotype.Service;
 
